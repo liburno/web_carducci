@@ -8,5 +8,5 @@
 
 
 // librerie di sistema
-// Math, Random...
+// Math, Random, String...
 

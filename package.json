@@ -1,0 +1,20 @@
+{
+  "name": "web_carducci",
+  "version": "1.0.0",
+  "description": "- creare un nuovo repository e clonarlo - git config - creazione di una chiave pubblica per l'accesso GIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liburno/web_carducci.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liburno/web_carducci/issues"
+  },
+  "homepage": "https://github.com/liburno/web_carducci#readme"
+}

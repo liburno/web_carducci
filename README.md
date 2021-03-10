@@ -1,11 +1,20 @@
 # 03 - Comandi GIT
 
 - creare un nuovo repository e clonarlo
-- .git config
+- git config
 - creazione di una chiave pubblica per l'accesso GIT
 
+```comandi base 
+git status
+git log
+git add 
+git commit 
+git push
+git pull
+git diff
+```
 
-- git status
+
 
 ```bash
 # da main a master
