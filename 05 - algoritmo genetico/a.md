@@ -8,7 +8,7 @@ le funzioni di base
 
 ### a02 
 
-strytura della classe DNA (o canditato/persona) 
+struttura della classe DNA (o canditato/persona) 
 
 ### a03 
 

@@ -22,38 +22,26 @@ const flen = frase.length;
 
 
 class DNA {
-    constructor(genera = true) {
+    constructor(genera = true,test=1) {
         this.fitness = 0;
         this.data = [];
         if (genera) {
-            for (var i=0;i<flen;i++) {
-                this.data.push(randint(nchars));
-            }
+            // genera elementi casuali
             this.computefitness();
         }
     }
     computefitness() {
         // calcola un numero che indica quanto sono vicino alla soluzione.
-        var er=0
-        for (var i=0;i<flen;i++) {
-            if (vchars[this.data[i]]!=frase[i]) er++;
-        }
-        
         this.fitness = er;
     }
     dump() {
-        var res=[];
-        for (var i=0;i<flen;i++) {
-            res.push(vchars[this.data[i]]);
-        }
-        console.log(`fitness: ${this.fitness} - ${res.join('')}`)
+        // mostra i dati
     }
     generate(father) {
         // genera per combinazione
     }
 }
 
-for (var i=0;i<50;i++) {
-    var el=new DNA();
-    el.dump();
-}
+var el=new DNA();
+el.dump();
+
