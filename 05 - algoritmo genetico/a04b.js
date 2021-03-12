@@ -1,9 +1,9 @@
 // il test completo.
+console.log("sono qui ");
 
-
-const random=Math.random;
-const floor=Math.floor;
-const randint = (valore) => floor(random() * valore) 
+const random = Math.random;
+const floor = Math.floor;
+const randint = (valore) => floor(random() * valore)
 const scambia = (v) => {
     let c = v.length;
     while (c > 0) {
@@ -17,24 +17,22 @@ const scambia = (v) => {
 const vchars = 'qwertyuiopasdfghjklzxcvbnm .\''.split('');
 const nchars = vchars.length;
 // frase da indovinare
-var frase = 'la vispa teresa avea tra l\'erbetta';
-var flen = frase.length;
-
+var frase,flen;
 
 const options = {
     variazionegenetica: 0.07,
-    population:200,
-    popsurv:20,
-    popevolve:80,
+    population: 200,
+    popsurv: 20,
+    popevolve: 80,
 
 }
 
 
 
 class DNA {
-    constructor(genera = true,gen=0) {
+    constructor(genera = true, gen = 0) {
         this.fitness = 0;
-        this.gen=gen;
+        this.gen = gen;
         this.data = [];
         if (genera) {
             for (var x = 0; x < flen; x++) {
@@ -61,16 +59,16 @@ class DNA {
     generate(father) {
         var res = new DNA(false);
         for (var i = 0; i < flen; i++) {
-            var rx=random();
-            if (rx<options.variazionegenetica) {
-                res.data[i]= randint(nchars);
+            var rx = random();
+            if (rx < options.variazionegenetica) {
+                res.data[i] = randint(nchars);
             } else if (rx < .55) {
                 res.data[i] = this.data[i];
             } else {
                 res.data[i] = father.data[i];
             }
         }
-        res.gen=this.gen++;
+        res.gen = this.gen++;
         res.computefitness();
         return res;
     }
@@ -78,46 +76,66 @@ class DNA {
 
 class World {
     constructor() {
-        this.generazione=0;
-        this.pop=[];
-        for (var i =0; i<options.population;i++) {
+        this.generazione = 0;
+        this.pop = [];
+        for (var i = 0; i < options.population; i++) {
             this.pop.push(new DNA(true));
         };
-        this.pop=this.pop.sort((a,b)=>{return a.fitness-b.fitness})
+        this.pop = this.pop.sort((a, b) => { return a.fitness - b.fitness })
     }
     dump() {        // ordina per fitness e stampa i primi 3 :
-        process.stdout.write(`\n${this.generazione}-${this.minfitness}: ${this.pop[0].dump()} - ${this.pop[1].dump()} - ${this.pop[2].dump()}`);
+        return(`\n${this.generazione}-${this.minfitness}: 
+${this.pop[0].dump()}
+${this.pop[1].dump()}
+${this.pop[2].dump()}`);
     }
-    get minfitness () {
+    get minfitness() {
         return this.pop[0].fitness;
     }
     evolve() {
         // decide chi evolve
-        var rr=[];
-        for (;;) {
-            if (rr.length>=options.population) break;
-            var r1=randint(options.popsurv);
-            var r2=randint(options.popevolve);
-            if (r1!=r2) {
+        var rr = [];
+        for (; ;) {
+            if (rr.length >= options.population) break;
+            var r1 = randint(options.popsurv);
+            var r2 = randint(options.popevolve);
+            if (r1 != r2) {
                 rr.push(this.pop[r1].generate(this.pop[r2]));
             }
         }
         this.generazione++;
-        this.pop=rr.sort((a,b)=>{return a.fitness-b.fitness})
+        this.pop = rr.sort((a, b) => { return a.fitness - b.fitness })
         return this.minfitness;
 
     }
-    
+
 
 }
-var ww=new World();
-var mn=10000;
-for (;;) {
-    if (mn>ww.minfitness) {
-        mn=ww.minfitness;   
-        ww.dump();
-    } 
-    if (!ww.evolve()) break;
- 
+
+
+
+function risolvi() {
+    var testo=document.getElementById("testo")
+    var soluzione=document.getElementById("soluzione");
+
+    frase = testo.value;
+    flen = frase.length;
+
+    var ww = new World();
+    var mn = 10000;
+    for (; ;) {
+        if (mn > ww.minfitness) {
+            mn = ww.minfitness;
+            soluzione.innerText=ww.dump();
+        }
+        if (!ww.evolve()) break;
+
+    }
+    soluzione.innerText=ww.dump();
+  
 }
-ww.dump();
+
+
+/*
+
+*/

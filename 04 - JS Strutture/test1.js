@@ -1,12 +1,14 @@
-// if, for, switch, do, while
 
-// funzioni
+const vchars = 'qwertyuiopasdfghjklzxcvbnm .\''.split('');
+const nchars = vchars.length;
+// frase da indovinare
+const frase = 'la vispa Teresa avea tra l\'erbetta';
+const flen = frase.length;
 
-// classi: construttuori e istanze
 
-// require, moduli
+//console.log(frase.substr(3,2)); 
+// divide una stringa
+var v=frase.split(' ');
+console.log(v); 
 
-
-// librerie di sistema
-// Math, Random, String...
-
+console.log(v.join('.'));

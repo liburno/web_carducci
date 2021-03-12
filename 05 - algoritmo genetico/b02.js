@@ -123,6 +123,4 @@ class DNA {
         return res;
     }
 }
-
-    console.log(new DNA(true).dump());
-
+console.log(new DNA);

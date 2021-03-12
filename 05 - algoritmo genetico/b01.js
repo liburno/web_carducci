@@ -45,6 +45,4 @@ for (var x of fields) {
 }
 
 console.log('Possibili valori:');
-for (var f in tot) {
-    console.log(f,tot[f]);
-}
+console.log(tot);
