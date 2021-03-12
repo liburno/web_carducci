@@ -20,7 +20,7 @@ const nchars = vchars.length;
 var frase,flen;
 
 const options = {
-    variazionegenetica: 0.07,
+    variazionegenetica: 0.02,
     population: 200,
     popsurv: 20,
     popevolve: 80,
@@ -138,10 +138,8 @@ function risolvi() {
     var ww = new World();
     var mn = 10000;
     var id=setInterval(()=>{
-        if (mn > ww.minfitness) {
-            mn = ww.minfitness;
-            soluzione.innerText=ww.dump();
-        }
+        mn = ww.minfitness;
+        soluzione.innerText=ww.dump();
         if (!ww.evolve()) {
             soluzione.innerText=ww.dump();
             clearInterval(id);  
