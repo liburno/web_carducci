@@ -87,7 +87,11 @@ class World {
         return(`\n${this.generazione}-${this.minfitness}: 
 ${this.pop[0].dump()}
 ${this.pop[1].dump()}
-${this.pop[2].dump()}`);
+${this.pop[2].dump()}
+${this.pop[3].dump()}
+${this.pop[4].dump()}
+${this.pop[5].dump()}
+`);
     }
     get minfitness() {
         return this.pop[0].fitness;
@@ -118,24 +122,31 @@ function risolvi() {
     var testo=document.getElementById("testo")
     var soluzione=document.getElementById("soluzione");
 
-    frase = testo.value;
+
+    var controllaStringa=(stringa)=> {
+        var res=[];
+        for (var c of stringa) {
+            if (vchars.includes(c)) res.push(c);
+        }
+        return res.join('')
+    }
+    
+
+    frase = controllaStringa(testo.value);
     flen = frase.length;
 
     var ww = new World();
     var mn = 10000;
-    for (; ;) {
+    var id=setInterval(()=>{
         if (mn > ww.minfitness) {
             mn = ww.minfitness;
             soluzione.innerText=ww.dump();
         }
-        if (!ww.evolve()) break;
-
-    }
-    soluzione.innerText=ww.dump();
-  
+        if (!ww.evolve()) {
+            soluzione.innerText=ww.dump();
+            clearInterval(id);  
+        }
+    },20);
+   
 }
 
-
-/*
-
-*/
